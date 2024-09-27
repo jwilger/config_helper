@@ -7,7 +7,9 @@ defmodule ConfigHelper.MixProject do
       version: "1.0.0",
       elixir: "~> 1.17",
       start_permanent: Mix.env() == :prod,
-      deps: deps()
+      deps: deps(),
+      description: "A helper library for configuration management",
+      package: package()
     ]
   end
 
@@ -22,7 +24,16 @@ defmodule ConfigHelper.MixProject do
   defp deps do
     [
       {:jason, "~> 1.2"},
-      {:mix_test_interactive, "~> 4.0", only: :dev, runtime: false}
+      {:mix_test_interactive, "~> 4.0", only: :dev, runtime: false},
+      {:ex_doc, ">= 0.0.0", only: :dev, runtime: false}
+    ]
+  end
+
+  defp package do
+    [
+      maintainers: ["John Wilger"],
+      licenses: ["MIT"],
+      links: %{"GitHub" => "https://github.com/jwilger/config_helper"}
     ]
   end
 end
