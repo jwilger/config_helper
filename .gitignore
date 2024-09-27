@@ -26,3 +26,4 @@ config_helper-*.tar
 /tmp/
 .nix-hex
 .nix-mix/archives/hex-2.1.1/hex-2.1.1
+.erlang-history

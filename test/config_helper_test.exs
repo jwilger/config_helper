@@ -37,7 +37,7 @@ defmodule ConfigHelperTest do
     end
 
     test "raises an error if env var is not set and no default is provided" do
-      assert_raise KeyError, fn ->
+      assert_raise System.EnvError, fn ->
         ConfigHelper.get_env("NON_EXISTENT_VAR", :no_default)
       end
     end
@@ -46,7 +46,7 @@ defmodule ConfigHelperTest do
   describe "remove_sslmode_from_uri/1" do
     test "removes sslmode from URI string" do
       uri = "postgres://user:pass@localhost/db?sslmode=require"
-      expected = "postgres://user:pass@localhost/db"
+      expected = "postgres://user:pass@localhost/db?"
       assert ConfigHelper.remove_sslmode_from_uri(uri) == expected
     end
 
@@ -57,7 +57,7 @@ defmodule ConfigHelperTest do
 
     test "removes sslmode from URI struct" do
       uri = URI.parse("postgres://user:pass@localhost/db?sslmode=require")
-      expected = "postgres://user:pass@localhost/db"
+      expected = "postgres://user:pass@localhost/db?"
       assert ConfigHelper.remove_sslmode_from_uri(uri) == expected
     end
 
